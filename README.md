@@ -52,7 +52,7 @@ custom-receipt-ai/
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/ARF-Ryu/custom-receipt-ai.git](https://github.com/ARF-Ryu/custom-receipt-ai.git)
+git clone [https://github.com/ARF-Ryu/ai-receipt-extractor.git](https://github.com/ARF-Ryu/ai-receipt-extractor.git)
 cd custom-receipt-ai
 ```
 
