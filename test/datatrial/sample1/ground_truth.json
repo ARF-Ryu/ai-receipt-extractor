@@ -1,0 +1,63 @@
+{
+  "merchant_name": "TLOGOMAS",
+  "merchant_address": "JLN RAYA TLOGOMAS NO. 44 RT. 001 RW. 004, 65144",
+  "transaction_date": "2022-01-21",
+  "transaction_time": "18:27:00",
+  "total_amount": 75400.0,
+  "line_items": [
+    {
+      "item_name": "POP MIE AYAM 75G",
+      "item_quantity": 1,
+      "item_price": 4900.0,
+      "item_total": 4900.0
+    },
+    {
+      "item_name": "POP MIE PD.DWR AYM75",
+      "item_quantity": 1,
+      "item_price": 5400.0,
+      "item_total": 5400.0
+    },
+    {
+      "item_name": "NESTLE PURE LIFE 600",
+      "item_quantity": 2,
+      "item_price": 3600.0,
+      "item_total": 7200.0
+    },
+    {
+      "item_name": "LE MINERALE 600ML",
+      "item_quantity": 2,
+      "item_price": 3500.0,
+      "item_total": 7000.0
+    },
+    {
+      "item_name": "ULTRA KCNG HIJAU 250",
+      "item_quantity": 1,
+      "item_price": 4900.0,
+      "item_total": 4900.0
+    },
+    {
+      "item_name": "NUTRIJEL PWD.STRW.15",
+      "item_quantity": 2,
+      "item_price": 6600.0,
+      "item_total": 13200.0
+    },
+    {
+      "item_name": "KNZLER SNGLES KJU 65",
+      "item_quantity": 1,
+      "item_price": 8700.0,
+      "item_total": 8700.0
+    },
+    {
+      "item_name": "KNZLER SNGLES HOT 65",
+      "item_quantity": 1,
+      "item_price": 8700.0,
+      "item_total": 8700.0
+    },
+    {
+      "item_name": "KANZLR BAKSO ORI 48G",
+      "item_quantity": 2,
+      "item_price": 8700.0,
+      "item_total": 17400.0
+    }
+  ]
+}

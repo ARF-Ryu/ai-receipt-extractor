@@ -1,0 +1,24 @@
+# Virtual Environment & Python Cache
+.env/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Kredensial & Konfigurasi Lokal (JANGAN DI-UPLOAD)
+config.py
+secrets.env
+*.env
+
+# Gambar Sementara & Hasil Uji Lokal
+temp_*.jpg
+temp_*.png
+benchmark_report*.json
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

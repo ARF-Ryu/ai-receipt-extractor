@@ -1,0 +1,21 @@
+# Core API & Data Validation
+openai>=1.30.0
+pydantic>=2.5.0
+python-dotenv>=1.0.0
+
+# Computer Vision & Image Processing
+opencv-python>=4.8.0
+pillow>=10.0.0
+numpy>=1.24.0
+
+# Local Hugging Face Inference (SmolVLM & Donut CORD-v2)
+torch>=2.1.0
+torchvision>=0.16.0
+transformers>=4.45.0
+accelerate>=0.30.0
+sentencepiece>=0.2.0
+protobuf>=4.25.0
+
+# Web UI & Automated Evaluation
+streamlit>=1.32.0
+pytest>=8.0.0
