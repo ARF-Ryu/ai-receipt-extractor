@@ -149,7 +149,18 @@ All four inference backends were evaluated on an Indonesian retail thermal recei
 | **`donut-base-finetuned-cord-v2` (HF)** | Fast local execution (~28–33s) without an external server; strong item/price extraction on clean layouts. | Not trained on merchant names/addresses (causes header-to-item shift); misreads totals on Indonesian receipts. | Lightweight local itemization or as a base checkpoint for **custom fine-tuning** on local receipts. |
 | **`SmolVLM-500M-Instruct` (HF)** | Ultra-compact footprint (~1GB); reads raw product text well visually. | Sub-1B capacity struggles with strict multi-nested JSON adherence (`schema drift` & token repetition). | Best used only as **Stage 1 OCR** inside the **Hybrid Pipeline** paired with a stronger Text LLM. |
 
-### 3. Key Takeaways on OpenCV Preprocessing
+### 3. Model Selection Recommendations
+
+Choosing the right model depends on your hardware budget, latency target, and privacy requirements:
+
+* **Best for Maximum Accuracy & Data Privacy (4GB VRAM Local):** Use **`qwen2.5vl:3b` via Ollama** (or `granite3.2-vision:2b` as a lighter alternative). It is the only local model in our benchmark that achieved 100% line-item and arithmetic precision without leaking sensitive receipt data to external APIs.
+* **Best for Real-Time Production Speed:** Use **`openai/gpt-4o-mini` via OpenRouter** with **OpenCV preprocessing turned OFF**. Natural RGB images prevent thin thermal digits from eroding while keeping end-to-end latency under 10 seconds.
+* **Best for Custom Fine-Tuning:** Use **`naver-clova-ix/donut-base-finetuned-cord-v2`**. Because it is an OCR-free encoder-decoder model already pre-trained on receipt structures, fine-tuning it on Indonesian retail receipts requires minimal VRAM and avoids external server overhead.
+* **What to Avoid for Standalone JSON Extraction:** Avoid sub-1B parameter VLMs like **`SmolVLM-500M-Instruct`** for direct JSON generation on dense receipts. If used at all, restrict it to **Stage 1 raw text transcription** inside the **Hybrid Pipeline** paired with a stronger Text LLM (`gpt-4o-mini` or `qwen2.5:3b`).
+* **OpenCV Preprocessing Rule of Thumb:** Keep OpenCV adaptive thresholding **disabled** for modern Vision-Language Transformers (`gpt-4o-mini`, `qwen2.5vl:3b`), and enable it **only** for `Donut CORD-v2` or severely faded thermal prints.
+
+### 4. Key Takeaways on OpenCV Preprocessing
+
 * **Natural RGB is Optimal for Modern VLMs:** Vision-Language Transformers (`gpt-4o-mini`, `qwen2.5vl:3b`) are trained on natural RGB encoders. Applying aggressive `adaptiveThreshold` binarization can erode thin thermal digits (e.g., turning `4900` into `490` or `LE MINERALE` qty `2` into `1`).
 * **When to Enable OpenCV:** Keep OpenCV preprocessing enabled primarily for **Donut CORD-v2** or severely faded/low-contrast receipts where background thermal noise prevents line segmentation.
 
@@ -158,7 +169,7 @@ All four inference backends were evaluated on an Indonesian retail thermal recei
 ## 🗺️ Future Engineering Roadmap
 
 1. **Cross-Field Mathematical Validation (`Pydantic @model_validator`):**
-   Add an automatic reconciliation check comparing $\sum (\text{item\_quantity} \times \text{item\_price})$ against `total_amount`. Flag discrepancies exceeding expected tax/discount thresholds with `needs_review=True` or trigger an automatic retry.
+   Add an automatic reconciliation check comparing `sum(item_quantity * item_price)` against `total_amount`. Flag discrepancies exceeding expected tax/discount thresholds with `needs_review=True` or trigger an automatic retry.
 2. **Item-Level Granular Metrics in `benchmark.py`:**
    Expand evaluation assertions beyond `total_amount` and `len(line_items)` to compute **per-item price/quantity F1-score** and **Character Error Rate (CER)** on merchant and product names.
 3. **4GB VRAM Latency Optimization for Local Ollama:**
