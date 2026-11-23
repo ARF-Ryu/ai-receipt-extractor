@@ -37,11 +37,11 @@ custom-receipt-ai/
 ├── config.example.py           # Configuration template for local API keys
 ├── .gitignore                  # Excludes secrets, virtual environments, and temp files
 ├── requirements.txt            # Python dependencies
-└── tests/                      # Multi-provider AI Evaluation & Regression Suite
+└── test/                      # Multi-provider AI Evaluation & Regression Suite
     ├── conftest.py             # Custom PyTest CLI flags (--provider, --hf-model, --opencv, etc.)
     ├── test_receipt_parser.py  # Automated field-level accuracy & numeric tolerance tests
-    └── dataset/
-        └── sample_01/
+    └── datatrial/
+        └── sample1/
             ├── receipt.jpg
             └── ground_truth.json
 ```
@@ -52,7 +52,7 @@ custom-receipt-ai/
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/your-username/custom-receipt-ai.git](https://github.com/your-username/custom-receipt-ai.git)
+git clone [https://github.com/ARF-Ryu/custom-receipt-ai.git](https://github.com/ARF-Ryu/custom-receipt-ai.git)
 cd custom-receipt-ai
 ```
 
